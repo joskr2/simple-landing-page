@@ -5,13 +5,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Image from 'next/image'
 import MyDialog from '../dialog/MyDialog'
-
-const misRutas = [
-  { name: 'Inicio', href: '/' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Contactame', href: '/contactame' },
-  { name: 'Info', href: '/info' },
-]
+import misRutas from './routes'
 
 export default function MyHeader() {
   const [abrirMenuHamburguesa, setAbrirMenuHamburguesa] = useState(false)
@@ -20,7 +14,7 @@ export default function MyHeader() {
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href="#" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Mi portafolio</span>
             <Image className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" width={32} height={32} />
           </Link>
@@ -36,11 +30,13 @@ export default function MyHeader() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          {misRutas.map(({ name, href }) => (
-            <Link key={name} href={href} className="text-sm font-semibold leading-6 text-gray-900">
-              {name}
-            </Link>
-          ))}
+          <>
+            {misRutas.map(({ name, href }) => (
+              <Link key={name} href={href} className="text-sm font-semibold leading-6 text-gray-900">
+                {name}
+              </Link>
+            ))}
+          </>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
@@ -49,6 +45,6 @@ export default function MyHeader() {
         </div>
       </nav>
       <MyDialog rutas={misRutas} open={abrirMenuHamburguesa} setOpen={setAbrirMenuHamburguesa} />
-    </header>
+    </header >
   )
 }

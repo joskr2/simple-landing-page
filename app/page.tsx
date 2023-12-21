@@ -1,5 +1,6 @@
-import HeaderSection from "./components/headerSection/HeaderSection";
-import ProductList from "./components/productsList/ProductList";
+import MyHeader from "@/components/home/header/MyHeader";
+import HeaderSection from "../components/home/headerSection/HeaderSection";
+import ProductList from "../components/home/productsList/ProductList";
 
 export default function Home() {
   const products = [
@@ -41,9 +42,13 @@ export default function Home() {
     },
   ]
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <HeaderSection />
-      <ProductList products={products} />
-    </main>
+    <>
+      <MyHeader />
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <HeaderSection />
+        <ProductList products={products} />
+      </main>
+    </>
+
   )
 }
