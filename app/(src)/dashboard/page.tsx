@@ -35,7 +35,6 @@ function classNames(...classes: string[]) {
 const DashboardPage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
     return (
-      <>
         <div>
           <Transition.Root show={sidebarOpen} as={Fragment}>
             <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
@@ -329,13 +328,13 @@ const DashboardPage = () => {
             </div>
   
             <main className="py-10">
+              <></>
               <div className="px-4 sm:px-6 lg:px-8">
                 <Pokemones />
               </div>
             </main>
           </div>
         </div>
-      </>
   )
 }
 

@@ -30,13 +30,11 @@ export default function MyHeader() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          <>
-            {misRutas.map(({ name, href }) => (
-              <Link key={name} href={href} className="text-sm font-semibold leading-6 text-gray-900">
-                {name}
-              </Link>
-            ))}
-          </>
+          {misRutas.map(({ name, href }) => (
+            <Link key={name} href={href} className="text-sm font-semibold leading-6 text-gray-900">
+              {name}
+            </Link>
+          ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
