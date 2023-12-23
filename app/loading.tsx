@@ -1,8 +1,15 @@
+
 import React from 'react'
+// import { useAppContext } from './context'
 
 const LoadingPage = () => {
+ //  const { state, setState } = useAppContext()
+  // console.log(state)
   return (
-    <div>LoadingPage</div>
+<>
+      <h1 className="text-3xl text-center">Loading...</h1>
+
+    </>
   )
 }
 

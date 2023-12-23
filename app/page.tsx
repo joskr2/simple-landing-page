@@ -1,8 +1,11 @@
 import MyHeader from "@/components/home/header/MyHeader";
 import HeaderSection from "../components/home/headerSection/HeaderSection";
 import ProductList from "../components/home/productsList/ProductList";
+import { useAppContext } from './../app/context'
 
 export default function Home() {
+
+  // const { state, setState } = useAppContext()
   const products = [
     {
       id: 1,
@@ -41,6 +44,8 @@ export default function Home() {
       color: 'Black',
     },
   ]
+
+  // console.log(state,setState)
   return (
     <>
       <MyHeader />
