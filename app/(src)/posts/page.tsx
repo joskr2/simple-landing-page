@@ -19,49 +19,49 @@ const getPosts = async () => {
   }
 }
 
-interface Post {
-  title: string
-  body: string,
-  userId: number | string
-}
+// interface Post {
+//   title: string
+//   body: string,
+//   userId: number | string
+// }
 
-const getToken = async () => {
-  const data = await fetch('https://jsonplaceholder.typicode.com/users', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': 'true',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': '*'
-    },
-    body: JSON.stringify({
-      email: ''
-    })
-  })
+// const getToken = async () => {
+//   const data = await fetch('https://jsonplaceholder.typicode.com/users', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Accept': 'application/json',
+//       'Access-Control-Allow-Origin': '*',
+//       'Access-Control-Allow-Credentials': 'true',
+//       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+//       'Access-Control-Allow-Headers': '*'
+//     },
+//     body: JSON.stringify({
+//       email: ''
+//     })
+//   })
 
-  return data.json()
-}
+//   return data.json()
+// }
 
-export const postPosts = async (url: string, newPost: Post, token?: string) => {
-  const data = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': 'true',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': '*',
-      'bearer': token ? token : ''
-    },
-    body: JSON.stringify(newPost)
-  }).then(
-    res => res.json()
-  )
-  return data
-}
+// export const postPosts = async (url: string, newPost: Post, token?: string) => {
+//   const data = await fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Accept': 'application/json',
+//       'Access-Control-Allow-Origin': '*',
+//       'Access-Control-Allow-Credentials': 'true',
+//       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+//       'Access-Control-Allow-Headers': '*',
+//       'bearer': token ? token : ''
+//     },
+//     body: JSON.stringify(newPost)
+//   }).then(
+//     res => res.json()
+//   )
+//   return data
+// }
 
 const Posts = async () => {
   const posts = await getPosts()

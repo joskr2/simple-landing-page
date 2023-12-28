@@ -1,8 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next"
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async () => {
   const providers = [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -10,7 +9,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }),
   ]
 
-  return await NextAuth(req, res, {
+  return await NextAuth( {
     providers
   })
 }

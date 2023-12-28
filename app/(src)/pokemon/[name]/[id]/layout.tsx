@@ -1,15 +1,12 @@
 import MyHeader from '@/components/commons/header/MyHeader'
-import { Inter } from 'next/font/google'
 import type { Metadata, ResolvingMetadata } from 'next'
 
 type Props = {
   params: { name: string, id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
 }
-const inter = Inter({ subsets: ['latin'] })
+
 export async function generateMetadata(
-  { params: { name, id },
-    searchParams }: Props,
+  { params: { name, id } }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   // read route params
@@ -31,7 +28,7 @@ export async function generateMetadata(
 export default function PokemonLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body >
         <MyHeader />
         {children}
       </body>
