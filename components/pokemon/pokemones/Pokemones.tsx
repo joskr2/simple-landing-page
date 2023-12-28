@@ -29,6 +29,27 @@ const getPokemon = async (url: string): Promise<SimplePokemon[]> => {
   return pokemons
 }
 
+// const getPokemon = async (url: string): Promise<SimplePokemon[]> => {
+//   const { results }: PokemonResponse = await fetch(url,{
+//     method:'GET',
+//     headers:{
+//       'Content-Type':'application/json',
+//       'Accept':'application/json',
+//       'Access-Control-Allow-Origin':'*',
+//       'Access-Control-Allow-Credentials':'true',
+//       'Access-Control-Allow-Methods':'GET, POST, OPTIONS',
+//       'Access-Control-Allow-Headers':'*',
+//       'bearer':'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI'
+//     }
+//   }).then(
+//     res => res.json()
+//   )
+//   const pokemons = results.map(pokemon => ({
+//     name: pokemon.name,
+//     id: pokemon?.url?.split('/')[6]
+//   }))
+//   return pokemons
+// }
 
 // const postPokemon = async (url:string,newPokemon:string) => {
 //   const data = await fetch(url,{
