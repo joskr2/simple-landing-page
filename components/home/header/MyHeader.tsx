@@ -6,11 +6,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import MyDialog from '../dialog/MyDialog'
 import misRutas from './routes'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 export default function MyHeader() {
   const [abrirMenuHamburguesa, setAbrirMenuHamburguesa] = useState(false)
+  const { data: session } = useSession()
+  const rutas = session ? misRutas : misRutas.filter(({ name }) => name !== 'Dashboard')
 
-  return (
+  return ( 
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
@@ -30,19 +33,35 @@ export default function MyHeader() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          {misRutas.map(({ name, href }) => (
+          {rutas.map(({ name, href }) => (
             <Link key={name} href={href} className="text-sm font-semibold leading-6 text-gray-900">
               {name}
             </Link>
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Acceder <span aria-hidden="true">&rarr;</span>
-          </Link>
+        {session ? (
+              <button
+                type="button"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                onClick={() => signOut({
+                  callbackUrl: '/'
+                })}
+              >
+                Cerrar sesión
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                onClick={() => signIn()}
+              >
+                Iniciar sesión
+              </button>
+            )}
         </div>
       </nav>
-      <MyDialog rutas={misRutas} open={abrirMenuHamburguesa} setOpen={setAbrirMenuHamburguesa} />
+      <MyDialog rutas={rutas} open={abrirMenuHamburguesa} setOpen={setAbrirMenuHamburguesa} />
     </header >
   )
 }

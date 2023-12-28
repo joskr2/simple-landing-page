@@ -5,6 +5,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import Image from 'next/image'
 import MyDialog from '../../home/dialog/MyDialog'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 const misRutas = [
   { name: 'Inicio', href: '/' },
@@ -15,6 +16,10 @@ const misRutas = [
 
 export default function MyHeader() {
   const [abrirMenuHamburguesa, setAbrirMenuHamburguesa] = useState(false)
+  const { data: session } = useSession()
+
+
+  const rutas = session ? misRutas : misRutas.filter(({ name }) => name !== 'Dashboard')
 
   return (
     <header className="bg-white">
@@ -36,19 +41,39 @@ export default function MyHeader() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          {misRutas.map(({ name, href }) => (
+
+          {rutas.map(({ name, href }) => (
             <Link key={name} href={href} className="text-sm font-semibold leading-6 text-gray-900">
               {name}
             </Link>
           ))}
+
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Acceder <span aria-hidden="true">&rarr;</span>
-          </Link>
+          <span className="inline-flex rounded-md shadow-sm">
+            {session ? (
+              <button
+                type="button"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                onClick={() => signOut({
+                  callbackUrl: '/'
+                })}
+              >
+                Cerrar sesión
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                onClick={() => signIn()}
+              >
+                Iniciar sesión
+              </button>
+            )}
+          </span>
         </div>
       </nav>
-      <MyDialog rutas={misRutas} open={abrirMenuHamburguesa} setOpen={setAbrirMenuHamburguesa} />
+      <MyDialog rutas={rutas} open={abrirMenuHamburguesa} setOpen={setAbrirMenuHamburguesa} />
     </header>
   )
 }

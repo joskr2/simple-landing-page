@@ -1,7 +1,6 @@
 import MyHeader from "@/components/home/header/MyHeader";
 import HeaderSection from "../components/home/headerSection/HeaderSection";
 import ProductList from "../components/home/productsList/ProductList";
-import { useAppContext } from './../app/context'
 
 export default function Home() {
 
@@ -50,7 +49,7 @@ export default function Home() {
     <>
       <MyHeader />
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <HeaderSection />
+        <HeaderSection  />
         <ProductList products={products} />
       </main>
     </>

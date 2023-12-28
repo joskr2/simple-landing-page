@@ -2,7 +2,7 @@
 const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['tailwindui.com','images.unsplash.com','raw.githubusercontent.com'],
+    domains: ['tailwindui.com','images.unsplash.com','raw.githubusercontent.com','lh3.googleusercontent.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -19,6 +19,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
+        port: '',
+        pathname: '*',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
         port: '',
         pathname: '*',
       },
